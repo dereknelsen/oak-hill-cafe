@@ -1,6 +1,8 @@
 <template>
   <article>
     <h1>{{ title }}</h1>
+    <img :src="thumbnail" alt="Image">
+    <div v-md.breaks.xhtmlOut.linkify.html>{{ body }}</div>
   </article>
 </template>
 

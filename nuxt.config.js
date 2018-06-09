@@ -1,5 +1,5 @@
-var glob = require('glob');
-var path = require('path');
+var glob = require('glob')
+var path = require('path')
 
 // Enhance Nuxt's generate process by gathering all content files from Netifly CMS
 // automatically and match it to the path of your Nuxt routes.
@@ -52,6 +52,10 @@ module.exports = {
       }
     }
   },
+
+  plugins: [
+    {src: "~/plugins/vue-directive-markdown"},
+  ]
 }
 
 /**
