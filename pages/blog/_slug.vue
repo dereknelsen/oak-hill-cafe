@@ -19,13 +19,16 @@ export default {
     let post = await import("~/content/blog/posts/" + params.slug + ".json");
     return post;
   },
-  data () {
+  data() {
     const authors = require.context('~/content/authors', false, /\.json$/);
 
     const author = authors.keys().map(key => ({
       ...blog(key),
       _path: `/authors/${key.replace('.json', '').replace('./', '')}`
     }));
+    return { 
+      author,  
+    };
   }
 };
 </script>
