@@ -3,7 +3,7 @@
   <article class="blog">
     <header class="blog__header">
       <h1 class="blog__title">{{ title }}</h1>
-	  <p> {{ datetime }} </p>
+	  <p> {{ date }} </p>
     </header>
     <img :src="thumbnail" alt="Image">
     <section class="blog__rich-text" v-md>{{ body }}</section>
