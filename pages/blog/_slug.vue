@@ -20,14 +20,18 @@ export default {
     return post;
   },
   data() {
-    const authors = require.context('~/content/authors', false, /\.json$/);
 
-    const author = authors.keys().map(key => ({
+    // Using webpacks context to gather all files from a folder
+    const author = require.context('~/content/authors/', false, /\.json$/);
+
+    const authors = author.keys().map(key => ({
       ...blog(key),
       _path: `/authors/${key.replace('.json', '').replace('./', '')}`
     }));
+
+
     return { 
-      author,  
+      author 
     };
   }
 };
