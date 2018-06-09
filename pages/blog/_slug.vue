@@ -1,21 +1,21 @@
 <template>
-  <article>
-    <h1>{{ title }}</h1>
+
+  <article class="blog">
+    <header class="blog__header">
+      <h1 class="blog__title">{{ title }}</h1>
+	  <p> {{ datetime }} </p>
+    </header>
     <img :src="thumbnail" alt="Image">
-    <div v-md.breaks.xhtmlOut.linkify.html>{{ body }}</div>
+    <section class="blog__rich-text" v-md>{{ body }}</section>
   </article>
+
 </template>
+
 
 <script>
 export default {
   async asyncData({ params }) {
-    // const postPromise = process.BROWSER_BUILD
-    //   ? import('~/content/blog/posts/' + params.slug + '.json')
-    //   : Promise.resolve(
-    //       require('~/content/blog/posts/' + params.slug + '.json')
-    //     );
-
-    let post = await import('~/content/blog/posts/' + params.slug + '.json');
+    let post = await import("~/content/blog/posts/" + params.slug + ".json");
     return post;
   }
 };
