@@ -11,6 +11,7 @@
     <h2>Gallery</h2>
       <ul>
         <li v-for="thumbnail in thumbnails" :key="thumbnail.date">
+          <h4>{{ thumbnail.title }}</h4>
           <img :src="thumbnail.image" alt="">
         </li>
       </ul>

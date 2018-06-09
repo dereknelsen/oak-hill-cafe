@@ -7,7 +7,7 @@
     </header>
     <img :src="thumbnail" alt="Image">
     <vue-markdown :source="body"></vue-markdown>
-    <!-- <section class="blog__rich-text" v-md>{{ body }}</section> -->
+    <h4>{{ author.name }}</h4>
   </article>
 
 </template>
@@ -18,6 +18,14 @@ export default {
   async asyncData({ params }) {
     let post = await import("~/content/blog/posts/" + params.slug + ".json");
     return post;
+  },
+  data () {
+    const authors = require.context('~/content/authors', false, /\.json$/);
+
+    const author = authors.keys().map(key => ({
+      ...blog(key),
+      _path: `/authors/${key.replace('.json', '').replace('./', '')}`
+    }));
   }
 };
 </script>
