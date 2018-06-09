@@ -11,7 +11,19 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: 'json'
     fields: # The fields for each document, usually in front matter
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime", default: "", format: "MMMM Do YYYY"}
-      - {label: "Featured Image", name: "hero", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: true}
+      - {label: "Featured Image", name: "hero", widget: "image", required: true}
+      - {label: "Body", name: "body", widget: "markdown", required: true}
+      
+  - name: "gallery" 
+    label: "Gallery Thumbnail" 
+    folder: "content/gallery/thumbnails" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., title.md
+    format: 'json'
+    fields: # The fields for each document, usually in front matter
+      - {label: "Image Title", name: "title", widget: "string", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: false}
+      - {label: "Image", name: "image", widget: "image", required: true}
+      - {label: "Image Description", name: "description", widget: "text", required: false}
