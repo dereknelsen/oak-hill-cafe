@@ -6,7 +6,8 @@
 	  <p> {{ date }} </p>
     </header>
     <img :src="thumbnail" alt="Image">
-    <section class="blog__rich-text" v-md>{{ body }}</section>
+    <vue-markdown :source="body"></vue-markdown>
+    <!-- <section class="blog__rich-text" v-md>{{ body }}</section> -->
   </article>
 
 </template>

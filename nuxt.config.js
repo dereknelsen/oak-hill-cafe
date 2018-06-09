@@ -54,7 +54,7 @@ module.exports = {
   },
 
   plugins: [
-    {src: "~/plugins/vue-directive-markdown"},
+    {src: "~/plugins/vue-markdown"},
   ]
 }
 
