@@ -9,6 +9,21 @@ import CMS from 'netlify-cms'
 CMS.registerPreviewTemplate('my-template', MyTemplate)
 
 export default {
-	
+	script: [
+        { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }
+	],
+	mounted: [
+		{
+			if (window.netlifyIdentity) {
+				window.netlifyIdentity.on("init", user => {
+				if (!user) {
+					window.netlifyIdentity.on("login", () => {
+					document.location.href = "/admin/";
+					});
+				}
+				});
+			}
+		}
+	]
 }
 </script>
