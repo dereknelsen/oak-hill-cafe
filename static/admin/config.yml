@@ -12,8 +12,8 @@ collections:
     slug: "{{slug}}"
     format: 'json'
     fields:
-      - {label: "Avatar", name: "avatar", widget: "image", required: true}
       - {label: "Name", name: "title", widget: "string", required: true}
+      - {label: "Avatar", name: "avatar", widget: "image", required: true}
       - {label: "Short Bio", name: "bio", widget: "text", required: false}
 
   - name: "blog"
@@ -23,7 +23,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: 'json'
     fields:
-      - {label: "Author", name: "author", widget: "relation", collection: "author", searchFields: ["title"], valueField: "title", required: true}
+      - {label: "Author", name: "author", widget: "relation", collection: "author", searchFields: ["title"], valueField: ["title", "avatar", "bio"], displayFields: ["title"], required: true}
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: true}
       - {label: "Featured Image", name: "hero", widget: "image", required: true}

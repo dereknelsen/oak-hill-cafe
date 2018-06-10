@@ -28,8 +28,8 @@ export default {
   data() {
 
     // Using webpacks context to gather all files from a folder
-    const blog = require.context('~/content/blog/posts/', false, /\.json$/);
-    const gallery = require.context('~/content/gallery/', false, /\.json$/);
+    const blog = require.context('~/content/blog/posts/', false, /\.json$/)
+    const gallery = require.context('~/content/gallery/', false, /\.json$/)
 
     const posts = blog.keys().map(key => ({
       ...blog(key),
