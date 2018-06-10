@@ -7,9 +7,6 @@
     </header>
     <img :src="hero" alt="Image">
     <vue-markdown :source="body"></vue-markdown>
-   
-    <p>{{ author }}</p>
-    <img :src="avatar" alt="image">
 
   </article>
 
@@ -19,8 +16,8 @@
 <script>
 export default {
   async asyncData({ params }) {
-    let post = await import("~/content/blog/posts/" + params.slug + ".json");
-    return post;
+    let post = await import("~/content/blog/posts/" + params.slug + ".json")
+    return post
   }
-};
+}
 </script>

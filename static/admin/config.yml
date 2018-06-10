@@ -5,17 +5,6 @@ media_folder: "static/images/uploads" # Media files will be stored in the repo u
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 collections:
 
-  - name: "author"
-    label: "Author"
-    folder: "content/authors"
-    create: true
-    slug: "{{slug}}"
-    format: 'json'
-    fields:
-      - {label: "Name", name: "title", widget: "string", required: true}
-      - {label: "Avatar", name: "avatar", widget: "image", required: true}
-      - {label: "Short Bio", name: "bio", widget: "text", required: false}
-
   - name: "blog"
     label: "Blog"
     folder: "content/blog/posts"
@@ -23,23 +12,11 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: 'json'
     fields:
-      - {label: "Author", name: "author", widget: "relation", collection: "author", searchFields: ["title"], valueField: ["title", "avatar", "bio"], displayFields: ["title"], required: true}
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: true}
       - {label: "Featured Image", name: "hero", widget: "image", required: true}
+      - {label: "Tags", name: "tags", widget: "list", default: ["blog"]}
       - {label: "Body", name: "body", widget: "markdown", required: true}
-      
-  - name: "gallery"
-    label: "Gallery Thumbnail"
-    folder: "content/gallery"
-    create: true
-    slug: "{{slug}}"
-    format: 'json'
-    fields:
-      - {label: "Image Title", name: "title", widget: "string", required: false}
-      - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: false}
-      - {label: "Image", name: "image", widget: "image", required: true}
-      - {label: "Image Description", name: "description", widget: "text", required: false}
 
   - name: "events"
     label: "Event"
@@ -55,4 +32,14 @@ collections:
       - {label: "Event Description", name: "body", widget: "markdown", required: true}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
 
-    
+  - name: "gallery"
+    label: "Thumbnail"
+    folder: "content/gallery"
+    create: true
+    slug: "{{slug}}"
+    format: 'json'
+    fields:
+      - {label: "Image Title", name: "title", widget: "string", required: false}
+      - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: false}
+      - {label: "Image", name: "image", widget: "image", required: true}
+      - {label: "Image Description", name: "description", widget: "text", required: false}
