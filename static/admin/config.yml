@@ -4,7 +4,16 @@ backend:
 media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 collections:
-
+      
+  - name: "authors"
+    label: "Authors"
+    folder: "content/authors"
+    create: true
+    slug: "{{slug}}"
+    format: 'json'
+    fields:
+      - {label: "Name", name: "title", widget: "string", required: true}
+      
   - name: "blog"
     label: "Blog"
     folder: "content/blog/posts"
@@ -12,11 +21,18 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: 'json'
     fields:
+      - label: "Author"
+        name: "author"
+        widget: "object"
+        fields:
+          - {label: "Author Name", name: "name", widget: "relation", collection: "authors", searchFields: ["title"], displayFields: ["title"], valueField: "title", required: true}
+          - {label: "Profile", name: "profile", widget: "image", required: true}
       - {label: "Title", name: "title", widget: "string", required: true}
       - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: true}
       - {label: "Featured Image", name: "hero", widget: "image", required: true}
       - {label: "Tags", name: "tags", widget: "list", default: ["blog"]}
       - {label: "Body", name: "body", widget: "markdown", required: true}
+      - {label: "SEO Description", name: "description", widget: "text"}
 
   - name: "events"
     label: "Event"
@@ -33,13 +49,21 @@ collections:
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
 
   - name: "gallery"
-    label: "Thumbnail"
+    label: "Gallery"
     folder: "content/gallery"
     create: true
     slug: "{{slug}}"
     format: 'json'
     fields:
-      - {label: "Image Title", name: "title", widget: "string", required: false}
-      - {label: "Publish Date", name: "date", widget: "date", default: "", format: "MMMM Do YYYY", required: false}
-      - {label: "Image", name: "image", widget: "image", required: true}
-      - {label: "Image Description", name: "description", widget: "text", required: false}
+      - {label: "Gallery Name", name: "title", widget: "string", default: "Gallery"}
+      - label: "Images"
+        name: "image"
+        widget: "list"
+        fields:
+          - label: "Image"
+            name: "image"
+            widget: "object"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Image", name: "image", widget: "image", required: true}
+              - {label: "Description", name: "description", widget: "string"}
